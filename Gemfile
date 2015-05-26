@@ -75,3 +75,5 @@ group :test do
   gem 'shoulda-matchers', '~> 2.6.2'
 end
 
+# Excel
+gem "roo"
