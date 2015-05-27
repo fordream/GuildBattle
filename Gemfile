@@ -77,3 +77,6 @@ end
 
 # Excel
 gem "roo"
+
+# MySQLのbigint使う
+gem 'activerecord-mysql-awesome'
