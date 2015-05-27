@@ -80,3 +80,6 @@ gem "roo"
 
 # MySQLのbigint使う
 gem 'activerecord-mysql-awesome'
+
+# MySQLのカラムコメント
+gem 'activerecord-mysql-comment'
