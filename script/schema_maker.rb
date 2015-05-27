@@ -75,7 +75,7 @@ class SchemaMaker
 
     case column[:type]
       when "BIGINT"
-        put_str << "  t.integer :int8, :#{column[:name]}, :limit => 8#{not_null}, comment: \"#{column[:name_jp]}\""
+        put_str << "  t.integer :#{column[:name]}, :limit => 8#{not_null}, comment: \"#{column[:name_jp]}\""
       when "INT"
         put_str << "  t.integer :#{column[:name]}#{not_null}, comment: \"#{column[:name_jp]}\""
       when "TINYINT"
