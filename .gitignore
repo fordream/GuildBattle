@@ -12,3 +12,5 @@
 !/log/.keep
 /tmp
 .idea
+~*
+_schema.rb
