@@ -107,7 +107,6 @@ class SchemaMaker
           char_length = column[:type].gsub(/[^0-9]/, "").to_i
           put_str << "  t.string :#{column[:name]}, :limit => #{char_length}#{not_null}, comment: \"#{column[:name_jp]}\""
         else
-          binding.pry
           raise "#{column[:type]} is not support."
         end
     end
