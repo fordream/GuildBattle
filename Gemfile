@@ -83,3 +83,6 @@ gem 'activerecord-mysql-awesome'
 
 # MySQLのカラムコメント
 gem 'activerecord-mysql-comment'
+
+# schemaをモデルに書く
+gem 'annotate'
