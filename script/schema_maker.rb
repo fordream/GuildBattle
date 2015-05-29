@@ -1,13 +1,16 @@
 require "pry"
 require "roo"
+require "active_support"
 
 class SchemaMaker
 
   def initialize(file_path)
     # エクセルを読む
     readed = read_excel file_path
-    # 出力
+    # スキーマ出力
     put_schema(readed)
+    # モデル出力
+    put_model(readed)
   end
 
   private
@@ -28,7 +31,7 @@ class SchemaMaker
           when 1 # テーブル名
             table_info[:table_name_jp] = row[1].value
           when 2 # テーブル物理名
-            table_info[:table_name] = row[1].value
+            table_info[:table_name] = row[1].value.downcase
           when 3 # テーブルコメント
             table_info[:table_comment] = row[1].value
           else
@@ -37,7 +40,7 @@ class SchemaMaker
 
             table_info[:column] << {
               name_jp:    row[0].value,
-              name:       row[1].value,
+              name:       row[1].value.downcase,
               type:       row[2].value,
               constraint: row[3].value
             }
@@ -65,11 +68,24 @@ class SchemaMaker
     File.write('script/_schema.rb', schema_str)
   end
 
+  def put_model(readed)
+    output_dir = 'script/models/'
+    FileUtils.mkdir_p(output_dir) # ディレクトリ作成
+    readed.each do |s|
+      class_name = s[:table_name].downcase
+      model_str = "class #{ActiveSupport::Inflector.classify class_name} < ActiveRecord::Base\n"
+      model_str << "  self.table_name = '#{s[:table_name]}'\n"
+      model_str << "end"
+
+      File.write(output_dir + s[:table_name] + '.rb', model_str)
+    end
+  end
+
   private
 
   def put_column(put_str, column)
     # IDは無視
-    return if column[:name] == "ID"
+    return if column[:name].upcase == "ID"
     # not nullを付けるかどうか
     not_null = (column[:constraint] == 'NOT NULL' ? ', null: false' : '')
 
