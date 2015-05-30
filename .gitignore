@@ -14,3 +14,4 @@
 .idea
 ~*
 _schema.rb
+.DS_Store
