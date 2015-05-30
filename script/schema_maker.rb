@@ -23,7 +23,6 @@ class SchemaMaker
       next if sheet_no < 2 # 0, 1シート目はスキップ
 
       table_info          = {}
-      table_info[:column] = []
       row_no              = 0
       xlsx.sheet_for(sheet).each_row do |row|
         row_no = row_no + 1
@@ -38,12 +37,18 @@ class SchemaMaker
             next if is_blank(row[0]) || is_blank(row[1]) || is_blank(row[2]) # 項目名、物理名、型のいずれかがブランク
             next if /[A-Z0-9_]+/.match(row[1].value) == nil
 
+            table_info[:column] ||= []
             table_info[:column] << {
               name_jp:    row[0].value,
               name:       row[1].value.downcase,
               type:       row[2].value,
               constraint: row[3].value
             }
+
+            # typeカラムが存在している場合、あとでmodelのinheritance_columnをいじる
+            if row[1].value.downcase == 'type'
+              table_info[:exists_type] = true
+            end
         end
       end
       readed << table_info
@@ -74,6 +79,12 @@ class SchemaMaker
     readed.each do |s|
       class_name = s[:table_name].downcase
       model_str = "class #{ActiveSupport::Inflector.classify class_name} < ActiveRecord::Base\n"
+
+      # カラムに "type" が含まれているか
+      if s[:exists_type] == true
+        model_str << "  self.inheritance_column = :escape_from_type\n"
+      end
+
       model_str << "  self.table_name = '#{s[:table_name]}'\n"
       model_str << "end"
 
@@ -95,7 +106,7 @@ class SchemaMaker
       when "INT"
         put_str << "  t.integer :#{column[:name]}#{not_null}, comment: \"#{column[:name_jp]}\""
       when "TINYINT"
-        put_str << "  t.boolean :#{column[:name]}#{not_null}, comment: \"#{column[:name_jp]}\""
+        put_str << "  t.integer :#{column[:name]}#{not_null}, comment: \"#{column[:name_jp]}\""
       when "TIMESTAMP"
         put_str << "  t.timestamp :#{column[:name]}#{not_null}, comment: \"#{column[:name_jp]}\""
       when "TEXT"
