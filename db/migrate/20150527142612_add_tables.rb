@@ -1,6 +1,7 @@
 class AddTables < ActiveRecord::Migration
   def change
-    create_table :user, id: :bigint, comment: "ユーザーテーブル", force: :cascade do |t|
+    create_table :user, id: false, comment: "ユーザーテーブル", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.string :name, :limit => 32, null: false, comment: "ユーザー名"
       t.integer :girudo_id, :limit => 8, comment: "ギルドID"
       t.integer :shotai_id, :limit => 8, null: false, comment: "招待ID"
@@ -35,7 +36,8 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :user_shikibetsu, id: :bigint, comment: "ユーザー識別テーブル", force: :cascade do |t|
+    create_table :user_shikibetsu, id: false, comment: "ユーザー識別テーブル", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.integer :user_id, :limit => 8, null: false, comment: "ユーザーID"
       t.string :user_shikibetsu_id, :limit => 64, null: false, comment: "ユーザー識別ID"
       t.string :kishu_info, :limit => 64, comment: "機種情報"
@@ -43,7 +45,7 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :user_setting, id: :bigint, comment: "ユーザー設定テーブル", force: :cascade do |t|
+    create_table :user_setting, id: false, comment: "ユーザー設定テーブル", force: :cascade do |t|
       t.integer :se_onryo, null: false, comment: "SE音量"
       t.integer :bgm_onryo, null: false, comment: "BGM音量"
       t.integer :db_version, null: false, comment: "DBバージョン"
@@ -54,7 +56,8 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :user_battle, id: :bigint, comment: "ユーザーバトルテーブル", force: :cascade do |t|
+    create_table :user_battle, id: false, comment: "ユーザーバトルテーブル", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.integer :user_id, null: false, comment: "ユーザーID"
       t.string :image_no, :limit => 8, null: false, comment: "画像番号"
       t.integer :zokusei, null: false, comment: "属性"
@@ -73,7 +76,8 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :guild, id: :bigint, comment: "ギルドテーブル", force: :cascade do |t|
+    create_table :guild, id: false, comment: "ギルドテーブル", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.integer :name, null: false, comment: "名前"
       t.integer :rank, null: false, comment: "ランク"
       t.integer :exp, null: false, comment: "昇格値"
@@ -83,7 +87,8 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :chat, id: :bigint, comment: "チャットテーブル", force: :cascade do |t|
+    create_table :chat, id: false, comment: "チャットテーブル", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.integer :user_id, :limit => 8, null: false, comment: "ユーザーID"
       t.text :naiyo, null: false, comment: "内容"
       t.timestamp :regist_time, null: false, comment: "登録日時"
@@ -91,7 +96,8 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :unit_master, id: :bigint, comment: "ユニットマスタ", force: :cascade do |t|
+    create_table :unit_master, id: false, comment: "ユニットマスタ", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.string :no, :limit => 8, null: false, comment: "番号"
       t.string :image_no, :limit => 8, null: false, comment: "画像番号"
       t.integer :rare, null: false, comment: "レア度"
@@ -127,7 +133,8 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :unit, id: :bigint, comment: "ユニットテーブル", force: :cascade do |t|
+    create_table :unit, id: false, comment: "ユニットテーブル", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.integer :user_id, :limit => 8, null: false, comment: "ユーザーID"
       t.integer :unit_master_id, :limit => 8, null: false, comment: "ユニットマスタID"
       t.integer :star, null: false, comment: "星"
@@ -157,7 +164,8 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :skill_master, id: :bigint, comment: "スキルマスタ", force: :cascade do |t|
+    create_table :skill_master, id: false, comment: "スキルマスタ", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.string :image_no, :limit => 8, null: false, comment: "画像番号"
       t.integer :kbn, null: false, comment: "区分"
       t.integer :type, null: false, comment: "タイプ"
@@ -182,14 +190,15 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :dekki, id: :bigint, comment: "デッキテーブル", force: :cascade do |t|
+    create_table :dekki, id: false, comment: "デッキテーブル", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.integer :user_id, :limit => 8, null: false, comment: "ユーザーID"
       t.integer :no, null: false, comment: "番号"
       t.integer :main_flg, null: false, comment: "メインフラグ"
       t.timestamps null: false
     end
 
-    create_table :dekki_unit, id: :bigint, comment: "デッキユニットテーブル", force: :cascade do |t|
+    create_table :dekki_unit, id: false, comment: "デッキユニットテーブル", force: :cascade do |t|
       t.integer :user_id, :limit => 8, null: false, comment: "ユーザーID"
       t.integer :dekki_id, :limit => 8, null: false, comment: "デッキID"
       t.integer :unit_id, :limit => 8, null: false, comment: "ユニットID"
@@ -197,14 +206,15 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :dekki_skill, id: :bigint, comment: "デッキスキルテーブル", force: :cascade do |t|
+    create_table :dekki_skill, id: false, comment: "デッキスキルテーブル", force: :cascade do |t|
       t.integer :user_id, :limit => 8, null: false, comment: "ユーザーID"
       t.integer :dekki_id, :limit => 8, null: false, comment: "デッキID"
       t.integer :skill_master_id, :limit => 8, null: false, comment: "スキルマスタID"
       t.timestamps null: false
     end
 
-    create_table :info_master, id: :bigint, comment: "お知らせマスタ", force: :cascade do |t|
+    create_table :info_master, id: false, comment: "お知らせマスタ", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.integer :kbn, null: false, comment: "区分"
       t.text :naiyo, null: false, comment: "内容"
       t.timestamp :regist_time, null: false, comment: "配信開始日時"
@@ -212,7 +222,8 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :info, id: :bigint, comment: "お知らせテーブル", force: :cascade do |t|
+    create_table :info, id: false, comment: "お知らせテーブル", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.integer :user_id, :limit => 8, null: false, comment: "ユーザーID"
       t.integer :info_master_id, :limit => 8, null: false, comment: "お知らせマスタID"
       t.timestamp :get_time, null: false, comment: "取得日時"
@@ -220,14 +231,16 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :event_master, id: :bigint, comment: "イベントマスタ", force: :cascade do |t|
+    create_table :event_master, id: false, comment: "イベントマスタ", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.text :name, null: false, comment: "イベント名"
       t.timestamp :regist_time, null: false, comment: "公開開始日時"
       t.timestamp :update_time, null: false, comment: "公開終了日時"
       t.timestamps null: false
     end
 
-    create_table :event_image_master, id: :bigint, comment: "イベント画像マスタ", force: :cascade do |t|
+    create_table :event_image_master, id: false, comment: "イベント画像マスタ", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.integer :event_master_id, :limit => 8, null: false, comment: "イベントマスタID"
       t.integer :hyoji_kbn, null: false, comment: "表示区分"
       t.string :image_no, :limit => 8, null: false, comment: "画像番号"
@@ -235,7 +248,8 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :present_master, id: :bigint, comment: "プレゼントマスタ", force: :cascade do |t|
+    create_table :present_master, id: false, comment: "プレゼントマスタ", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.integer :kbn, null: false, comment: "区分"
       t.integer :login_su, comment: "ログイン数"
       t.integer :renzoku_login_su, comment: "連続ログイン数"
@@ -249,7 +263,8 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :present, id: :bigint, comment: "プレゼントテーブル", force: :cascade do |t|
+    create_table :present, id: false, comment: "プレゼントテーブル", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.integer :user_id, :limit => 8, null: false, comment: "ユーザーID"
       t.integer :present_master_id, :limit => 8, null: false, comment: "プレゼントマスタID"
       t.timestamp :get_time, null: false, comment: "取得日時"
@@ -257,7 +272,8 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :premium_master, id: :bigint, comment: "プレミアムマスタ", force: :cascade do |t|
+    create_table :premium_master, id: false, comment: "プレミアムマスタ", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.integer :kbn, null: false, comment: "区分"
       t.integer :unit_master_id, :limit => 8, comment: "ユニットマスタID"
       t.integer :item_master_id, :limit => 8, comment: "アイテムマスタID"
@@ -270,13 +286,15 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :koukan, id: :bigint, comment: "交換履歴テーブル", force: :cascade do |t|
+    create_table :koukan, id: false, comment: "交換履歴テーブル", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.integer :kbn, null: false, comment: "区分"
       t.integer :premium_master_id, :limit => 8, comment: "プレミアムマスタID"
       t.timestamps null: false
     end
 
-    create_table :item_master, id: :bigint, comment: "アイテムマスタ", force: :cascade do |t|
+    create_table :item_master, id: false, comment: "アイテムマスタ", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.integer :no, null: false, comment: "区分"
       t.string :image_no, :limit => 8, null: false, comment: "画像番号"
       t.string :name, :limit => 32, null: false, comment: "名前"
@@ -288,7 +306,8 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :item, id: :bigint, comment: "アイテムテーブル", force: :cascade do |t|
+    create_table :item, id: false, comment: "アイテムテーブル", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.integer :user_id, :limit => 8, null: false, comment: "ユーザーID"
       t.integer :item_master_id, :limit => 8, null: false, comment: "アイテムマスタID"
       t.integer :shojisu, null: false, comment: "所持数"
@@ -298,7 +317,8 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :shisetsu_master, id: :bigint, comment: "施設マスタ", force: :cascade do |t|
+    create_table :shisetsu_master, id: false, comment: "施設マスタ", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.string :image_no, :limit => 8, null: false, comment: "画像番号"
       t.string :name, :limit => 32, null: false, comment: "名前"
       t.integer :level_max, null: false, comment: "最大レベル"
@@ -318,14 +338,16 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :shisetsu, id: :bigint, comment: "施設テーブル", force: :cascade do |t|
+    create_table :shisetsu, id: false, comment: "施設テーブル", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.integer :user_id, :limit => 8, null: false, comment: "ユーザーID"
       t.integer :shisetsu_master_id, :limit => 8, null: false, comment: "施設マスタID"
       t.integer :level, null: false, comment: "レベル"
       t.timestamps null: false
     end
 
-    create_table :danjon_master, id: :bigint, comment: "ダンジョンマスタ", force: :cascade do |t|
+    create_table :danjon_master, id: false, comment: "ダンジョンマスタ", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.string :image_no, :limit => 8, null: false, comment: "画像番号"
       t.integer :unit_master_id1, :limit => 8, null: false, comment: "ユニットマスタID1"
       t.integer :shutsugen_ritsu1, null: false, comment: "出現率1"
@@ -345,7 +367,8 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :danjon, id: :bigint, comment: "ダンジョンテーブル", force: :cascade do |t|
+    create_table :danjon, id: false, comment: "ダンジョンテーブル", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.integer :user_id, :limit => 8, null: false, comment: "ユーザーID"
       t.integer :danjon_master_id, :limit => 8, null: false, comment: "ダンジョンマスタID"
       t.integer :level1, null: false, comment: "レベル1"
@@ -361,7 +384,8 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :battle, id: :bigint, comment: "バトルテーブル", force: :cascade do |t|
+    create_table :battle, id: false, comment: "バトルテーブル", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.integer :no, null: false, comment: "番号"
       t.integer :girudo_id1, :limit => 8, null: false, comment: "ギルドID1"
       t.integer :bp1, null: false, comment: "BP1"
@@ -386,7 +410,8 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :battle_rireki, id: :bigint, comment: "バトル履歴テーブル", force: :cascade do |t|
+    create_table :battle_rireki, id: false, comment: "バトル履歴テーブル", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.integer :battle_id, :limit => 8, null: false, comment: "バトルID"
       t.integer :group_id, null: false, comment: "グループID"
       t.integer :kbn, null: false, comment: "区分"
@@ -404,7 +429,8 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :image_master, id: :bigint, comment: "画像マスタ", force: :cascade do |t|
+    create_table :image_master, id: false, comment: "画像マスタ", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.string :no, :limit => 8, null: false, comment: "番号"
       t.integer :kbn, null: false, comment: "区分"
       t.string :directory, :limit => 32, null: false, comment: "場所"
@@ -415,21 +441,24 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :image, id: :bigint, comment: "画像テーブル", force: :cascade do |t|
+    create_table :image, id: false, comment: "画像テーブル", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.integer :user_id, :limit => 8, null: false, comment: "ユーザーID"
       t.integer :image_master_id, :limit => 8, null: false, comment: "画像マスタID"
       t.integer :get_flg, null: false, comment: "取得フラグ"
       t.timestamps null: false
     end
 
-    create_table :exp_master, id: :bigint, comment: "経験値マスタ", force: :cascade do |t|
+    create_table :exp_master, id: false, comment: "経験値マスタ", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.integer :kbn, null: false, comment: "区分"
       t.integer :level, null: false, comment: "レベル"
       t.integer :exp, null: false, comment: "必要経験値"
       t.timestamps null: false
     end
 
-    create_table :buy_rireki, id: :bigint, comment: "購入履歴テーブル", force: :cascade do |t|
+    create_table :buy_rireki, id: false, comment: "購入履歴テーブル", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.integer :user_id, :limit => 8, null: false, comment: "ユーザーID"
       t.integer :kbn, null: false, comment: "区分"
       t.integer :kingaku, comment: "金額"
@@ -440,7 +469,8 @@ class AddTables < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :update_master, id: :bigint, comment: "更新マスタ", force: :cascade do |t|
+    create_table :update_master, id: false, comment: "更新マスタ", force: :cascade do |t|
+      t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'
       t.integer :no, null: false, comment: "バージョン"
       t.text :naiyo, null: false, comment: "更新内容"
       t.timestamp :start_time, null: false, comment: "開始日時"

@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527142612) do
+ActiveRecord::Schema.define(version: 20150601111610) do
 
-  create_table "battle", id: :integer, limit: 8, comment: "バトルテーブル", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "battle", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "no",            limit: 4, null: false, comment: "番号"
     t.integer  "girudo_id1",    limit: 8, null: false, comment: "ギルドID1"
     t.integer  "bp1",           limit: 4, null: false, comment: "BP1"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",              null: false
   end
 
-  create_table "battle_rireki", id: :integer, limit: 8, comment: "バトル履歴テーブル", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "battle_rireki", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "battle_id",      limit: 8, null: false, comment: "バトルID"
     t.integer  "group_id",       limit: 4, null: false, comment: "グループID"
     t.integer  "kbn",            limit: 4, null: false, comment: "区分"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",               null: false
   end
 
-  create_table "buy_rireki", id: :integer, limit: 8, comment: "購入履歴テーブル", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "buy_rireki", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",     limit: 8, null: false, comment: "ユーザーID"
     t.integer  "kbn",         limit: 4, null: false, comment: "区分"
     t.integer  "kingaku",     limit: 4,              comment: "金額"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",            null: false
   end
 
-  create_table "chat", id: :integer, limit: 8, comment: "チャットテーブル", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "chat", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",     limit: 8,     null: false, comment: "ユーザーID"
     t.text     "naiyo",       limit: 65535, null: false, comment: "内容"
     t.datetime "regist_time",               null: false, comment: "登録日時"
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "danjon", id: :integer, limit: 8, comment: "ダンジョンテーブル", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "danjon", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",          limit: 8, null: false, comment: "ユーザーID"
     t.integer  "danjon_master_id", limit: 8, null: false, comment: "ダンジョンマスタID"
     t.integer  "level1",           limit: 4, null: false, comment: "レベル1"
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",                 null: false
   end
 
-  create_table "danjon_master", id: :integer, limit: 8, comment: "ダンジョンマスタ", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "danjon_master", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "image_no",         limit: 8, null: false, comment: "画像番号"
     t.integer  "unit_master_id1",  limit: 8, null: false, comment: "ユニットマスタID1"
     t.integer  "shutsugen_ritsu1", limit: 4, null: false, comment: "出現率1"
@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",                 null: false
   end
 
-  create_table "dekki", id: :integer, limit: 8, comment: "デッキテーブル", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "dekki", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",    limit: 8, null: false, comment: "ユーザーID"
     t.integer  "no",         limit: 4, null: false, comment: "番号"
     t.integer  "main_flg",   limit: 4, null: false, comment: "メインフラグ"
@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",           null: false
   end
 
-  create_table "dekki_skill", id: :integer, limit: 8, comment: "デッキスキルテーブル", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "dekki_skill", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",         limit: 8, null: false, comment: "ユーザーID"
     t.integer  "dekki_id",        limit: 8, null: false, comment: "デッキID"
     t.integer  "skill_master_id", limit: 8, null: false, comment: "スキルマスタID"
@@ -133,7 +133,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "dekki_unit", id: :integer, limit: 8, comment: "デッキユニットテーブル", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "dekki_unit", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",    limit: 8, null: false, comment: "ユーザーID"
     t.integer  "dekki_id",   limit: 8, null: false, comment: "デッキID"
     t.integer  "unit_id",    limit: 8, null: false, comment: "ユニットID"
@@ -142,7 +142,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",           null: false
   end
 
-  create_table "event_image_master", id: :integer, limit: 8, comment: "イベント画像マスタ", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "event_image_master", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "event_master_id", limit: 8, null: false, comment: "イベントマスタID"
     t.integer  "hyoji_kbn",       limit: 4, null: false, comment: "表示区分"
     t.string   "image_no",        limit: 8, null: false, comment: "画像番号"
@@ -151,7 +151,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "event_master", id: :integer, limit: 8, comment: "イベントマスタ", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "event_master", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "name",        limit: 65535, null: false, comment: "イベント名"
     t.datetime "regist_time",               null: false, comment: "公開開始日時"
     t.datetime "update_time",               null: false, comment: "公開終了日時"
@@ -159,7 +159,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "exp_master", id: :integer, limit: 8, comment: "経験値マスタ", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "exp_master", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "kbn",        limit: 4, null: false, comment: "区分"
     t.integer  "level",      limit: 4, null: false, comment: "レベル"
     t.integer  "exp",        limit: 4, null: false, comment: "必要経験値"
@@ -167,7 +167,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",           null: false
   end
 
-  create_table "guild", id: :integer, limit: 8, comment: "ギルドテーブル", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "guild", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "name",       limit: 4, null: false, comment: "名前"
     t.integer  "rank",       limit: 4, null: false, comment: "ランク"
     t.integer  "exp",        limit: 4, null: false, comment: "昇格値"
@@ -178,7 +178,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",           null: false
   end
 
-  create_table "image", id: :integer, limit: 8, comment: "画像テーブル", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "image", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",         limit: 8, null: false, comment: "ユーザーID"
     t.integer  "image_master_id", limit: 8, null: false, comment: "画像マスタID"
     t.integer  "get_flg",         limit: 4, null: false, comment: "取得フラグ"
@@ -186,7 +186,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "image_master", id: :integer, limit: 8, comment: "画像マスタ", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "image_master", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "no",             limit: 8,  null: false, comment: "番号"
     t.integer  "kbn",            limit: 4,  null: false, comment: "区分"
     t.string   "directory",      limit: 32, null: false, comment: "場所"
@@ -198,7 +198,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "info", id: :integer, limit: 8, comment: "お知らせテーブル", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "info", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",        limit: 8, null: false, comment: "ユーザーID"
     t.integer  "info_master_id", limit: 8, null: false, comment: "お知らせマスタID"
     t.datetime "get_time",                 null: false, comment: "取得日時"
@@ -207,7 +207,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",               null: false
   end
 
-  create_table "info_master", id: :integer, limit: 8, comment: "お知らせマスタ", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "info_master", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "kbn",         limit: 4,     null: false, comment: "区分"
     t.text     "naiyo",       limit: 65535, null: false, comment: "内容"
     t.datetime "regist_time",               null: false, comment: "配信開始日時"
@@ -216,7 +216,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "item", id: :integer, limit: 8, comment: "アイテムテーブル", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "item", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",        limit: 8, null: false, comment: "ユーザーID"
     t.integer  "item_master_id", limit: 8, null: false, comment: "アイテムマスタID"
     t.integer  "shojisu",        limit: 4, null: false, comment: "所持数"
@@ -227,7 +227,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",               null: false
   end
 
-  create_table "item_master", id: :integer, limit: 8, comment: "アイテムマスタ", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "item_master", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "no",          limit: 4,     null: false, comment: "区分"
     t.string   "image_no",    limit: 8,     null: false, comment: "画像番号"
     t.string   "name",        limit: 32,    null: false, comment: "名前"
@@ -240,14 +240,54 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "koukan", id: :integer, limit: 8, comment: "交換履歴テーブル", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "koukan", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "kbn",               limit: 4, null: false, comment: "区分"
     t.integer  "premium_master_id", limit: 8,              comment: "プレミアムマスタID"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
 
-  create_table "premium_master", id: :integer, limit: 8, comment: "プレミアムマスタ", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "oauth_access_grants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "resource_owner_id", limit: 4,     null: false
+    t.integer  "application_id",    limit: 4,     null: false
+    t.string   "token",             limit: 255,   null: false
+    t.integer  "expires_in",        limit: 4,     null: false
+    t.text     "redirect_uri",      limit: 65535, null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "revoked_at"
+    t.string   "scopes",            limit: 255
+  end
+
+  add_index "oauth_access_grants", ["token"], name: "index_oauth_access_grants_on_token", unique: true, using: :btree
+
+  create_table "oauth_access_tokens", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "resource_owner_id", limit: 4
+    t.integer  "application_id",    limit: 4
+    t.string   "token",             limit: 255, null: false
+    t.string   "refresh_token",     limit: 255
+    t.integer  "expires_in",        limit: 4
+    t.datetime "revoked_at"
+    t.datetime "created_at",                    null: false
+    t.string   "scopes",            limit: 255
+  end
+
+  add_index "oauth_access_tokens", ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true, using: :btree
+  add_index "oauth_access_tokens", ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id", using: :btree
+  add_index "oauth_access_tokens", ["token"], name: "index_oauth_access_tokens_on_token", unique: true, using: :btree
+
+  create_table "oauth_applications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",         limit: 255,                null: false
+    t.string   "uid",          limit: 255,                null: false
+    t.string   "secret",       limit: 255,                null: false
+    t.text     "redirect_uri", limit: 65535,              null: false
+    t.string   "scopes",       limit: 255,   default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
+
+  create_table "premium_master", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "kbn",            limit: 4, null: false, comment: "区分"
     t.integer  "unit_master_id", limit: 8,              comment: "ユニットマスタID"
     t.integer  "item_master_id", limit: 8,              comment: "アイテムマスタID"
@@ -261,7 +301,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",               null: false
   end
 
-  create_table "present", id: :integer, limit: 8, comment: "プレゼントテーブル", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "present", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",           limit: 8, null: false, comment: "ユーザーID"
     t.integer  "present_master_id", limit: 8, null: false, comment: "プレゼントマスタID"
     t.datetime "get_time",                    null: false, comment: "取得日時"
@@ -270,7 +310,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",                  null: false
   end
 
-  create_table "present_master", id: :integer, limit: 8, comment: "プレゼントマスタ", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "present_master", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "kbn",              limit: 4,     null: false, comment: "区分"
     t.integer  "login_su",         limit: 4,                  comment: "ログイン数"
     t.integer  "renzoku_login_su", limit: 4,                  comment: "連続ログイン数"
@@ -285,7 +325,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",                     null: false
   end
 
-  create_table "shisetsu", id: :integer, limit: 8, comment: "施設テーブル", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "shisetsu", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",            limit: 8, null: false, comment: "ユーザーID"
     t.integer  "shisetsu_master_id", limit: 8, null: false, comment: "施設マスタID"
     t.integer  "level",              limit: 4, null: false, comment: "レベル"
@@ -293,7 +333,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",                   null: false
   end
 
-  create_table "shisetsu_master", id: :integer, limit: 8, comment: "施設マスタ", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "shisetsu_master", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "image_no",    limit: 8,  null: false, comment: "画像番号"
     t.string   "name",        limit: 32, null: false, comment: "名前"
     t.integer  "level_max",   limit: 4,  null: false, comment: "最大レベル"
@@ -312,7 +352,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",             null: false
   end
 
-  create_table "skill_master", id: :integer, limit: 8, comment: "スキルマスタ", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "skill_master", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "image_no",     limit: 8,     null: false, comment: "画像番号"
     t.integer  "kbn",          limit: 4,     null: false, comment: "区分"
     t.integer  "type",         limit: 4,     null: false, comment: "タイプ"
@@ -338,7 +378,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",                 null: false
   end
 
-  create_table "unit", id: :integer, limit: 8, comment: "ユニットテーブル", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "unit", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",            limit: 8, null: false, comment: "ユーザーID"
     t.integer  "unit_master_id",     limit: 8, null: false, comment: "ユニットマスタID"
     t.integer  "star",               limit: 4, null: false, comment: "星"
@@ -369,7 +409,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",                   null: false
   end
 
-  create_table "unit_master", id: :integer, limit: 8, comment: "ユニットマスタ", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "unit_master", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "no",                     limit: 8,     null: false, comment: "番号"
     t.string   "image_no",               limit: 8,     null: false, comment: "画像番号"
     t.integer  "rare",                   limit: 4,     null: false, comment: "レア度"
@@ -406,7 +446,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",                           null: false
   end
 
-  create_table "update_master", id: :integer, limit: 8, comment: "更新マスタ", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "update_master", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "no",         limit: 4,     null: false, comment: "バージョン"
     t.text     "naiyo",      limit: 65535, null: false, comment: "更新内容"
     t.datetime "start_time",               null: false, comment: "開始日時"
@@ -414,7 +454,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",               null: false
   end
 
-  create_table "user", id: :integer, limit: 8, comment: "ユーザーテーブル", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "user", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",             limit: 32, null: false, comment: "ユーザー名"
     t.integer  "girudo_id",        limit: 8,               comment: "ギルドID"
     t.integer  "shotai_id",        limit: 8,  null: false, comment: "招待ID"
@@ -450,7 +490,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",                  null: false
   end
 
-  create_table "user_battle", id: :integer, limit: 8, comment: "ユーザーバトルテーブル", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "user_battle", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",        limit: 4, null: false, comment: "ユーザーID"
     t.string   "image_no",       limit: 8, null: false, comment: "画像番号"
     t.integer  "zokusei",        limit: 4, null: false, comment: "属性"
@@ -470,7 +510,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",               null: false
   end
 
-  create_table "user_setting", id: :integer, limit: 8, comment: "ユーザー設定テーブル", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "user_setting", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "se_onryo",          limit: 4, null: false, comment: "SE音量"
     t.integer  "bgm_onryo",         limit: 4, null: false, comment: "BGM音量"
     t.integer  "db_version",        limit: 4, null: false, comment: "DBバージョン"
@@ -482,7 +522,7 @@ ActiveRecord::Schema.define(version: 20150527142612) do
     t.datetime "updated_at",                  null: false
   end
 
-  create_table "user_shikibetsu", id: :integer, limit: 8, comment: "ユーザー識別テーブル", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "user_shikibetsu", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",            limit: 8,  null: false, comment: "ユーザーID"
     t.string   "user_shikibetsu_id", limit: 64, null: false, comment: "ユーザー識別ID"
     t.string   "kishu_info",         limit: 64,              comment: "機種情報"

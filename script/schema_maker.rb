@@ -22,8 +22,8 @@ class SchemaMaker
     xlsx.sheets.each_with_index do |sheet, sheet_no|
       next if sheet_no < 2 # 0, 1シート目はスキップ
 
-      table_info          = {}
-      row_no              = 0
+      table_info = {}
+      row_no     = 0
       xlsx.sheet_for(sheet).each_row do |row|
         row_no = row_no + 1
         case row_no
@@ -63,7 +63,7 @@ class SchemaMaker
   def put_schema(readed)
     schema_str = ''
     readed.each do |s|
-      schema_str << "create_table :#{s[:table_name]}, id: :bigint, comment: \"#{s[:table_name_jp]}\", force: :cascade do |t|\n"
+      schema_str << "create_table :#{s[:table_name]}, id: false, comment: \"#{s[:table_name_jp]}\", force: :cascade do |t|\n"
       s[:column].each do |c|
         put_column(schema_str, c)
       end
@@ -78,7 +78,7 @@ class SchemaMaker
     FileUtils.mkdir_p(output_dir) # ディレクトリ作成
     readed.each do |s|
       class_name = s[:table_name].downcase
-      model_str = "class #{ActiveSupport::Inflector.classify class_name} < ActiveRecord::Base\n"
+      model_str  = "class #{ActiveSupport::Inflector.classify class_name} < ActiveRecord::Base\n"
 
       # カラムに "type" が含まれているか
       if s[:exists_type] == true
@@ -95,31 +95,35 @@ class SchemaMaker
   private
 
   def put_column(put_str, column)
-    # IDは無視
-    return if column[:name].upcase == "ID"
-    # not nullを付けるかどうか
-    not_null = (column[:constraint] == 'NOT NULL' ? ', null: false' : '')
+    if column[:name].upcase == "ID"
+      # IDは別の処理
+      put_str << "  t.column :id, 'BIGINT PRIMARY KEY AUTO_INCREMENT'"
+    else
+      # ID以外
+      # not nullを付けるかどうか
+      not_null = (column[:constraint] == 'NOT NULL' ? ', null: false' : '')
 
-    case column[:type]
-      when "BIGINT"
-        put_str << "  t.integer :#{column[:name]}, :limit => 8#{not_null}, comment: \"#{column[:name_jp]}\""
-      when "INT"
-        put_str << "  t.integer :#{column[:name]}#{not_null}, comment: \"#{column[:name_jp]}\""
-      when "TINYINT"
-        put_str << "  t.integer :#{column[:name]}#{not_null}, comment: \"#{column[:name_jp]}\""
-      when "TIMESTAMP"
-        put_str << "  t.timestamp :#{column[:name]}#{not_null}, comment: \"#{column[:name_jp]}\""
-      when "TEXT"
-        put_str << "  t.text :#{column[:name]}#{not_null}, comment: \"#{column[:name_jp]}\""
-      when "FLOAT"
-        put_str << "  t.float :#{column[:name]}#{not_null}, comment: \"#{column[:name_jp]}\""
-      else
-        if column[:type] =~ /VARCHAR.*/
-          char_length = column[:type].gsub(/[^0-9]/, "").to_i
-          put_str << "  t.string :#{column[:name]}, :limit => #{char_length}#{not_null}, comment: \"#{column[:name_jp]}\""
+      case column[:type]
+        when "BIGINT"
+          put_str << "  t.integer :#{column[:name]}, :limit => 8#{not_null}, comment: \"#{column[:name_jp]}\""
+        when "INT"
+          put_str << "  t.integer :#{column[:name]}#{not_null}, comment: \"#{column[:name_jp]}\""
+        when "TINYINT"
+          put_str << "  t.integer :#{column[:name]}#{not_null}, comment: \"#{column[:name_jp]}\""
+        when "TIMESTAMP"
+          put_str << "  t.timestamp :#{column[:name]}#{not_null}, comment: \"#{column[:name_jp]}\""
+        when "TEXT"
+          put_str << "  t.text :#{column[:name]}#{not_null}, comment: \"#{column[:name_jp]}\""
+        when "FLOAT"
+          put_str << "  t.float :#{column[:name]}#{not_null}, comment: \"#{column[:name_jp]}\""
         else
-          raise "#{column[:type]} is not support."
-        end
+          if column[:type] =~ /VARCHAR.*/
+            char_length = column[:type].gsub(/[^0-9]/, "").to_i
+            put_str << "  t.string :#{column[:name]}, :limit => #{char_length}#{not_null}, comment: \"#{column[:name_jp]}\""
+          else
+            raise "#{column[:type]} is not support."
+          end
+      end
     end
     put_str << "\n"
   end
