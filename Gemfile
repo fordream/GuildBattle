@@ -89,6 +89,7 @@ gem 'annotate'
 
 # API
 gem 'garage', github: 'cookpad/garage'
+gem 'garage-doorkeeper'
 
 # oauth
 gem 'doorkeeper'
