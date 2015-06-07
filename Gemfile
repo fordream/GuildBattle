@@ -86,3 +86,10 @@ gem 'activerecord-mysql-comment'
 
 # schemaをモデルに書く
 gem 'annotate'
+
+# API
+gem 'garage', github: 'cookpad/garage'
+
+# oauth
+gem 'doorkeeper'
+gem 'responders', '~> 2.0'
