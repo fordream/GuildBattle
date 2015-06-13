@@ -4,7 +4,12 @@ Rails.application.routes.draw do
 
   # API
   scope :v1 do
-    resources :users, only: [:index, :create]
+    # regists
+    post 'regists/get_token'
+    post 'regists/new'
+
+    # users
+    get 'users/show'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
