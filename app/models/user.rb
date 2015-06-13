@@ -53,6 +53,16 @@ class User < ActiveRecord::Base
     perms.permits! :read
   end
 
+  def self.new_user(name, shotai_id)
+    u = new(name: name, shotai_id: shotai_id)
+    u.save!
+    # ユーザー識別テーブル
+    us = UserShikibetsu.new(user_id: u.id)
+    us.save!
+
+    us.user_shikibetsu_id
+  end
+
   private
 
   def set_default_value
