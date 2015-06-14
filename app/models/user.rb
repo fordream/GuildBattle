@@ -7,41 +7,42 @@ class User < ActiveRecord::Base
   after_initialize :set_default_value
 
   has_one :user_shikibetsu
+  has_many :user_battle
 
-  property :id
-  property :name
-  property :girudo_id
-  property :shotai_id
-  property :shotai_su
-  property :level
-  property :exp
-  property :coin
-  property :mana_p
-  property :crystal_kakin
-  property :crystal_muryo
-  property :premium_p
-  property :seisyo
-  property :fvko
-  property :unit_max
-  property :huriwaike_p
-  property :unit_cost
-  property :skill_cost
-  property :stamina
-  property :stamina_max
-  property :ap
-  property :ap_max
-  property :koei_flg
-  property :final_login_time
-  property :renzoku_login
-  property :total_login
-  property :kouken_p
-  property :battle_su
-  property :battle_sanka_su
-  property :regist_time
-  property :update_time
-  property :account_stop_flg
+  property :name # ユーザー名
+  property :girudo_id # ギルドID
+  property :shotai_id # 招待ID
+  property :shotai_su # 招待数
+  property :level # レベル
+  property :exp # 経験値
+  property :coin # コイン
+  property :mana_p # マナP
+  property :crystal_kakin # 課金クリスタル
+  property :crystal_muryo # 無料クリスタル
+  property :premium_p # プレミアムP
+  property :seisyo # 聖書
+  property :fvko # FV粉
+  property :unit_max # キャラ最大数
+  property :huriwaike_p # 振り分けP
+  property :unit_cost # キャラコスト
+  property :skill_cost # スキルコスト
+  property :stamina # スタミナ
+  property :stamina_max # 最大スタミナ
+  property :ap # AP
+  property :ap_max # 最大AP
+  property :koei_flg # 後衛希望フラグ
+  property :final_login_time # 最終ログイン日時
+  property :renzoku_login # 連続ログイン
+  property :total_login # 合計ログイン
+  property :kouken_p # ギルド貢献P
+  property :battle_su # 開催バトル数
+  property :battle_sanka_su # バトル参加数
+  property :regist_time # 登録日時
+  property :update_time # 更新日時
+  property :account_stop_flg # アカウント停止フラグ
 
   property :user_shikibetsu
+  collection :user_battle
 
   def self.build_permissions(perms, other, target)
     perms.permits! :write
