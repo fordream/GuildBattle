@@ -8,6 +8,16 @@ class User < ActiveRecord::Base
 
   has_one :user_shikibetsu
   has_many :user_battle
+  has_many :unit
+  has_many :dekki
+  has_many :dekki_unit
+  has_many :dekki_skill
+  has_many :info
+  has_many :present
+  has_many :item
+  has_many :shisetsu
+  has_many :danjon
+  has_many :image
 
   property :name # ユーザー名
   property :girudo_id # ギルドID
@@ -41,8 +51,19 @@ class User < ActiveRecord::Base
   property :update_time # 更新日時
   property :account_stop_flg # アカウント停止フラグ
 
-  property :user_shikibetsu
-  collection :user_battle
+  # 以下はUserとアソシエーションがあるデータ
+  property :user_shikibetsu # ユーザー識別テーブル
+  collection :user_battle # ユーザーバトルテーブル
+  collection :unit # ユニットテーブル
+  collection :dekki # デッキテーブル
+  collection :dekki_unit # デッキユニットテーブル
+  collection :dekki_skill # デッキスキルテーブル
+  collection :info # お知らせテーブル
+  collection :present # プレゼントテーブル
+  collection :item # アイテムテーブル
+  collection :shisetsu # 施設テーブル
+  collection :danjon # ダンジョンテーブル
+  collection :image # 画像テーブル
 
   def self.build_permissions(perms, other, target)
     perms.permits! :write
