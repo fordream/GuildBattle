@@ -86,6 +86,24 @@ class SchemaMaker
       end
 
       model_str << "  self.table_name = '#{s[:table_name]}'\n"
+      model_str << "\n"
+      model_str << "  include Garage::Representer\n"
+      model_str << "  include Garage::Authorizable\n"
+      model_str << "\n"
+      s[:column].each do |c|
+        model_str << "  property :#{c[:name]} # #{c[:name_jp]}\n" unless c[:name] == 'id'
+      end
+      model_str << "\n"
+      model_str << "  def self.build_permissions(perms, other, target)\n"
+      #model_str << "    perms.permits! :write\n"
+      model_str << "    perms.permits! :read\n"
+      model_str << "  end\n"
+      model_str << "\n"
+      model_str << "  def build_permissions(perms, other)\n"
+      #model_str << "    perms.permits! :write\n"
+      model_str << "    perms.permits! :read\n"
+      model_str << "  end\n"
+      model_str << "\n"
       model_str << "end"
 
       File.write(output_dir + s[:table_name] + '.rb', model_str)
