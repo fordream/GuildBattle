@@ -16,7 +16,7 @@ class Seed
 
     xlsx = Roo::Excelx.new(file_path)
     xlsx.sheets.each_with_index do |sheet, sheet_no|
-      row_no = 0
+      row_no      = 0
 
       # シート名を小文字にしたあとでclassifyをかけ、モデルクラスをevalで作る
       # 'UNIT_MASTER'なら -> 'unit_master' -> 'UnitMaster'
@@ -28,7 +28,7 @@ class Seed
         row_no = row_no + 1
         next if row_no < 2
 
-        model = model_class.new
+        model  = model_class.new
         col_no = 0
 
         model.attributes.each do |c|
@@ -53,4 +53,4 @@ class Seed
 end
 
 # Run
-Seed.new Rails.root.join('db/seed_xls/データ管理0525.xlsx').to_s
+Seed.new File.join(Rails.root, 'db', 'seed_xls', 'データ管理0525.xlsx')
