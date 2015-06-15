@@ -42,16 +42,11 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
-
   # rails consoleを見やすく
   gem 'awesome_print'
 
   # railsのchrome拡張
   gem 'meta_request'
-
-  # pry
-  gem 'pry-rails'
-  gem 'pry-nav'
 
   # asset pipelineのログ出さない
   gem 'quiet_assets'
@@ -74,6 +69,10 @@ group :test do
   gem "selenium-webdriver", "~> 2.43.0"
   gem 'shoulda-matchers', '~> 2.6.2'
 end
+
+# pry
+gem 'pry-rails'
+gem 'pry-nav'
 
 # Excel
 gem "roo"
