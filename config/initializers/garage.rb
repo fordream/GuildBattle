@@ -12,7 +12,7 @@ Garage.configuration.strategy = Garage::Strategy::Doorkeeper
 Doorkeeper.configure do
 
   # アクセストークンの有効期間(nil=無期限)
-  access_token_expires_in nil
+  access_token_expires_in = nil
 
   # 認証情報(credentials)からリソースオーナーを特定するメソッド
   resource_owner_from_credentials do |routes|
