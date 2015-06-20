@@ -4,9 +4,9 @@ class Image < ActiveRecord::Base
   include Garage::Representer
   include Garage::Authorizable
 
-  property :user_id # ユーザーID
+  property :user_id         # ユーザーID
   property :image_master_id # 画像マスタID
-  property :get_flg # 取得フラグ
+  property :get_flg         # 取得フラグ
 
   def self.build_permissions(perms, other, target)
     perms.permits! :read

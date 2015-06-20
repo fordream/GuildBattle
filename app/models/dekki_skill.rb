@@ -4,8 +4,8 @@ class DekkiSkill < ActiveRecord::Base
   include Garage::Representer
   include Garage::Authorizable
 
-  property :user_id # ユーザーID
-  property :dekki_id # デッキID
+  property :user_id         # ユーザーID
+  property :dekki_id        # デッキID
   property :skill_master_id # スキルマスタID
 
   def self.build_permissions(perms, other, target)

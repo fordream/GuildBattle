@@ -19,51 +19,51 @@ class User < ActiveRecord::Base
   has_many :danjon
   has_many :image
 
-  property :name # ユーザー名
-  property :girudo_id # ギルドID
-  property :shotai_id # 招待ID
-  property :shotai_su # 招待数
-  property :level # レベル
-  property :exp # 経験値
-  property :coin # コイン
-  property :mana_p # マナP
-  property :crystal_kakin # 課金クリスタル
-  property :crystal_muryo # 無料クリスタル
-  property :premium_p # プレミアムP
-  property :seisyo # 聖書
-  property :fvko # FV粉
-  property :unit_max # キャラ最大数
-  property :huriwaike_p # 振り分けP
-  property :unit_cost # キャラコスト
-  property :skill_cost # スキルコスト
-  property :stamina # スタミナ
-  property :stamina_max # 最大スタミナ
-  property :ap # AP
-  property :ap_max # 最大AP
-  property :koei_flg # 後衛希望フラグ
+  property :name             # ユーザー名
+  property :girudo_id        # ギルドID
+  property :shotai_id        # 招待ID
+  property :shotai_su        # 招待数
+  property :level            # レベル
+  property :exp              # 経験値
+  property :coin             # コイン
+  property :mana_p           # マナP
+  property :crystal_kakin    # 課金クリスタル
+  property :crystal_muryo    # 無料クリスタル
+  property :premium_p        # プレミアムP
+  property :seisyo           # 聖書
+  property :fvko             # FV粉
+  property :unit_max         # キャラ最大数
+  property :huriwaike_p      # 振り分けP
+  property :unit_cost        # キャラコスト
+  property :skill_cost       # スキルコスト
+  property :stamina          # スタミナ
+  property :stamina_max      # 最大スタミナ
+  property :ap               # AP
+  property :ap_max           # 最大AP
+  property :koei_flg         # 後衛希望フラグ
   property :final_login_time # 最終ログイン日時
-  property :renzoku_login # 連続ログイン
-  property :total_login # 合計ログイン
-  property :kouken_p # ギルド貢献P
-  property :battle_su # 開催バトル数
-  property :battle_sanka_su # バトル参加数
-  property :regist_time # 登録日時
-  property :update_time # 更新日時
+  property :renzoku_login    # 連続ログイン
+  property :total_login      # 合計ログイン
+  property :kouken_p         # ギルド貢献P
+  property :battle_su        # 開催バトル数
+  property :battle_sanka_su  # バトル参加数
+  property :regist_time      # 登録日時
+  property :update_time      # 更新日時
   property :account_stop_flg # アカウント停止フラグ
 
   # 以下はUserとアソシエーションがあるデータ
   property :user_shikibetsu # ユーザー識別テーブル
-  collection :user_battle # ユーザーバトルテーブル
-  collection :unit # ユニットテーブル
-  collection :dekki # デッキテーブル
-  collection :dekki_unit # デッキユニットテーブル
-  collection :dekki_skill # デッキスキルテーブル
-  collection :info # お知らせテーブル
-  collection :present # プレゼントテーブル
-  collection :item # アイテムテーブル
-  collection :shisetsu # 施設テーブル
-  collection :danjon # ダンジョンテーブル
-  collection :image # 画像テーブル
+  collection :user_battle   # ユーザーバトルテーブル
+  collection :unit          # ユニットテーブル
+  collection :dekki         # デッキテーブル
+  collection :dekki_unit    # デッキユニットテーブル
+  collection :dekki_skill   # デッキスキルテーブル
+  collection :info          # お知らせテーブル
+  collection :present       # プレゼントテーブル
+  collection :item          # アイテムテーブル
+  collection :shisetsu      # 施設テーブル
+  collection :danjon        # ダンジョンテーブル
+  collection :image         # 画像テーブル
 
   def self.build_permissions(perms, other, target)
     perms.permits! :write

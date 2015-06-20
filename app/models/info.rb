@@ -4,10 +4,10 @@ class Info < ActiveRecord::Base
   include Garage::Representer
   include Garage::Authorizable
 
-  property :user_id # ユーザーID
+  property :user_id        # ユーザーID
   property :info_master_id # お知らせマスタID
-  property :get_time # 取得日時
-  property :kidoku_flg # 既読フラグ
+  property :get_time       # 取得日時
+  property :kidoku_flg     # 既読フラグ
 
   def self.build_permissions(perms, other, target)
     perms.permits! :read

@@ -4,10 +4,10 @@ class Guild < ActiveRecord::Base
   include Garage::Representer
   include Garage::Authorizable
 
-  property :name # 名前
-  property :rank # ランク
-  property :exp # 昇格値
-  property :win_su # 勝利数
+  property :name    # 名前
+  property :rank    # ランク
+  property :exp     # 昇格値
+  property :win_su  # 勝利数
   property :lose_su # 敗北数
   property :draw_su # 引き分け数
 

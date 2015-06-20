@@ -8,7 +8,7 @@ class UserShikibetsu < ActiveRecord::Base
 
   belongs_to :user
 
-  property :kishu_info # 機種情報
+  property :kishu_info     # 機種情報
   property :update_version # 更新バージョン
 
   private

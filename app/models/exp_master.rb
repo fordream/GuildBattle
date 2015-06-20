@@ -4,9 +4,9 @@ class ExpMaster < ActiveRecord::Base
   include Garage::Representer
   include Garage::Authorizable
 
-  property :kbn # 区分
+  property :kbn   # 区分
   property :level # レベル
-  property :exp # 必要経験値
+  property :exp   # 必要経験値
 
   def self.build_permissions(perms, other, target)
     perms.permits! :read

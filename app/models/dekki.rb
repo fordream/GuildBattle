@@ -4,8 +4,8 @@ class Dekki < ActiveRecord::Base
   include Garage::Representer
   include Garage::Authorizable
 
-  property :user_id # ユーザーID
-  property :no # 番号
+  property :user_id  # ユーザーID
+  property :no       # 番号
   property :main_flg # メインフラグ
 
   def self.build_permissions(perms, other, target)

@@ -5,9 +5,9 @@ class EventImageMaster < ActiveRecord::Base
   include Garage::Authorizable
 
   property :event_master_id # イベントマスタID
-  property :hyoji_kbn # 表示区分
-  property :image_no # 画像番号
-  property :link # リンク
+  property :hyoji_kbn       # 表示区分
+  property :image_no        # 画像番号
+  property :link            # リンク
 
   def self.build_permissions(perms, other, target)
     perms.permits! :read

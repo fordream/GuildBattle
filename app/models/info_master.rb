@@ -4,8 +4,8 @@ class InfoMaster < ActiveRecord::Base
   include Garage::Representer
   include Garage::Authorizable
 
-  property :kbn # 区分
-  property :naiyo # 内容
+  property :kbn         # 区分
+  property :naiyo       # 内容
   property :regist_time # 配信開始日時
   property :update_time # 配信終了日時
 

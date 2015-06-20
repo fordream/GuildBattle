@@ -4,8 +4,8 @@ class UpdateMaster < ActiveRecord::Base
   include Garage::Representer
   include Garage::Authorizable
 
-  property :no # バージョン
-  property :naiyo # 更新内容
+  property :no         # バージョン
+  property :naiyo      # 更新内容
   property :start_time # 開始日時
 
   def self.build_permissions(perms, other, target)

@@ -4,13 +4,13 @@ class UserSetting < ActiveRecord::Base
   include Garage::Representer
   include Garage::Authorizable
 
-  property :se_onryo # SE音量
-  property :bgm_onryo # BGM音量
-  property :db_version # DBバージョン
+  property :se_onryo          # SE音量
+  property :bgm_onryo         # BGM音量
+  property :db_version        # DBバージョン
   property :push_start_10_flg # ギルドバトル開始10分前通知
-  property :push_start_flg # ギルドバトル開始通知
-  property :push_end_10_flg # ギルドバトル終了10分前通知
-  property :push_end_flg # ギルドバトル終了通知
+  property :push_start_flg    # ギルドバトル開始通知
+  property :push_end_10_flg   # ギルドバトル終了10分前通知
+  property :push_end_flg      # ギルドバトル終了通知
 
   def self.build_permissions(perms, other, target)
     perms.permits! :read

@@ -4,12 +4,12 @@ class ItemMaster < ActiveRecord::Base
   include Garage::Representer
   include Garage::Authorizable
 
-  property :no # 区分
-  property :image_no # 画像番号
-  property :name # 名前
-  property :info # 説明
-  property :koukaryo # 効果量
-  property :kakuritsu # 確率
+  property :no          # 区分
+  property :image_no    # 画像番号
+  property :name        # 名前
+  property :info        # 説明
+  property :koukaryo    # 効果量
+  property :kakuritsu   # 確率
   property :regist_time # 登録日時
   property :update_time # 更新日時
 

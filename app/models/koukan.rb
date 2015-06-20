@@ -4,7 +4,7 @@ class Koukan < ActiveRecord::Base
   include Garage::Representer
   include Garage::Authorizable
 
-  property :kbn # 区分
+  property :kbn               # 区分
   property :premium_master_id # プレミアムマスタID
 
   def self.build_permissions(perms, other, target)

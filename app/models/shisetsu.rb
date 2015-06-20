@@ -4,9 +4,9 @@ class Shisetsu < ActiveRecord::Base
   include Garage::Representer
   include Garage::Authorizable
 
-  property :user_id # ユーザーID
+  property :user_id            # ユーザーID
   property :shisetsu_master_id # 施設マスタID
-  property :level # レベル
+  property :level              # レベル
 
   def self.build_permissions(perms, other, target)
     perms.permits! :read

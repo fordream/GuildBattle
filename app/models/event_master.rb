@@ -4,7 +4,7 @@ class EventMaster < ActiveRecord::Base
   include Garage::Representer
   include Garage::Authorizable
 
-  property :name # イベント名
+  property :name        # イベント名
   property :regist_time # 公開開始日時
   property :update_time # 公開終了日時
 
